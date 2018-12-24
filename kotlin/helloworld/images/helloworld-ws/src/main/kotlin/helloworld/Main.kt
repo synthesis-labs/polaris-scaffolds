@@ -5,6 +5,6 @@ import java.nio.ByteBuffer
 
 fun main(args : Array<String>) {
 
-    println("Hello world... and exiting...")
+    println("[[ .Name ]] - Hello world!")
 
 }

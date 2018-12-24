@@ -43,4 +43,4 @@ dependencies {
 
 // This is a dummy - start scripts are detailed below
 //
-mainClassName = "[[ .Project.Name ]]"
+mainClassName = "helloworld.MainKt"
