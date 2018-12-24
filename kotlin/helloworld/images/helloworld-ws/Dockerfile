@@ -4,5 +4,5 @@ RUN cd /home/gradle/project/ && gradle clean installDist
 
 FROM openjdk:10-jre
 WORKDIR app
-COPY --from=build /home/gradle/project/build/install/[[ .Name ]] .
+COPY --from=build /home/gradle/project/build/install/[[ .Name ]]-ws .
 VOLUME /tmp
