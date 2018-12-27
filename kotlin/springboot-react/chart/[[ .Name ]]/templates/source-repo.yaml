@@ -1,10 +1,10 @@
 apiVersion: polaris.synthesis.co.za/v1alpha1
 kind: PolarisSourceRepository
 metadata:
-  name: {{ template "todo.fullname" $ }}
+  name: {{ template "thischart.fullname" $ }}
   labels:
-    app: {{ template "todo.name" $ }}
-    chart: {{ template "todo.chart" $ }}
+    app: {{ template "thischart.name" $ }}
+    chart: {{ template "thischart.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
 spec:

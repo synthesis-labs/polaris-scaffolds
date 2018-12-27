@@ -2,22 +2,22 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "todo.fullname" $ }}-{{ $service_name }}
+  name: {{ template "thischart.fullname" $ }}-{{ $service_name }}
   labels:
-    app: {{ template "todo.name" $ }}-{{ $service_name }}
-    chart: {{ template "todo.chart" $ }}
+    app: {{ template "thischart.name" $ }}-{{ $service_name }}
+    chart: {{ template "thischart.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
 spec:
   replicas: {{ $service_detail.replicas }}
   selector:
     matchLabels:
-      app: {{ template "todo.name" $ }}-{{ $service_name }}
+      app: {{ template "thischart.name" $ }}-{{ $service_name }}
       release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "todo.name" $ }}-{{ $service_name }}
+        app: {{ template "thischart.name" $ }}-{{ $service_name }}
         release: {{ $.Release.Name }}
     spec:
       containers:

@@ -1,10 +1,10 @@
 apiVersion: polaris.synthesis.co.za/v1alpha1
 kind: PolarisContainerRegistry
 metadata:
-  name: {{ template "todo.fullname" $ }}-web
+  name: {{ template "thischart.fullname" $ }}-web
   labels:
-    app: {{ template "todo.name" $ }}-web
-    chart: {{ template "todo.chart" $ }}
+    app: {{ template "thischart.name" $ }}-web
+    chart: {{ template "thischart.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
 spec:
@@ -14,10 +14,10 @@ spec:
 apiVersion: polaris.synthesis.co.za/v1alpha1
 kind: PolarisContainerRegistry
 metadata:
-  name: {{ template "todo.fullname" $ }}-{{ $service_name }}
+  name: {{ template "thischart.fullname" $ }}-{{ $service_name }}
   labels:
-    app: {{ template "todo.name" $ }}-{{ $service_name }}
-    chart: {{ template "todo.chart" $ }}
+    app: {{ template "thischart.name" $ }}-{{ $service_name }}
+    chart: {{ template "thischart.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
 spec:

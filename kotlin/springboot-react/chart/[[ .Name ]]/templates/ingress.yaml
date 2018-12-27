@@ -1,10 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "todo.fullname" . }}-ingress
+  name: {{ template "thischart.fullname" . }}-ingress
   labels:
-    app: {{ template "todo.name" . }}
-    chart: {{ template "todo.chart" . }}
+    app: {{ template "thischart.name" . }}
+    chart: {{ template "thischart.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
@@ -19,11 +19,11 @@ spec:
          paths:
           - path: /
             backend:
-               serviceName: {{ template "todo.fullname" . }}-web
+               serviceName: {{ template "thischart.fullname" . }}-web
                servicePort: 80
           - path: /[[ .Name ]]
             backend:
-               serviceName: {{ template "todo.fullname" . }}-ws
+               serviceName: {{ template "thischart.fullname" . }}-ws
                servicePort: 80
    tls:
     - hosts:
