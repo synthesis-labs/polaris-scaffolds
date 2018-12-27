@@ -1,0 +1,44 @@
+
+buildpipeline:
+  codecommitrepo: [[ .Name ]]
+  branch: master
+
+web:
+  replicas: 1
+  host: [[ .Name ]].[[ .Parameters.cluster_name ]]
+  ci:
+    dockerfilelocation: images/[[ .Name ]]-web
+    containerrepository: [[ .Name ]]-web
+    tag: 1.0.0
+  image:
+    repository: [[ .Parameters.aws_account ]].dkr.ecr.[[ .Parameters.aws_region ]].amazonaws.com/[[ .Name ]]-web
+    tag: 1.0.0
+    pullPolicy: Always
+
+services:
+  [[ .Name ]]-ws:
+    replicas: 1
+    ci:
+      dockerfilelocation: images/[[ .Name ]]-ws
+      containerrepository: [[ .Name ]]-ws
+      tag: 1.0.0
+    image:
+      repository: [[ .Parameters.aws_account ]].dkr.ecr.[[ .Parameters.aws_region ]].amazonaws.com/[[ .Name ]]-ws
+      tag: 1.0.0
+      pullPolicy: Always
+    env:
+      {}
+
+resources:
+  requests:
+    cpu: 500m
+    memory: "768Mi"
+  limits:
+    cpu: 1000m
+    memory: "1024Mi"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
