@@ -1,0 +1,44 @@
+
+buildpipeline:
+  codecommitrepo: blah
+  branch: master
+
+web:
+  replicas: 1
+  host: blah.p1.s7s.cloud
+  ci:
+    dockerfilelocation: images/blah-web
+    containerrepository: blah-web
+    tag: 1.0.0
+  image:
+    repository: 535282574996.dkr.ecr.eu-west-1.amazonaws.com/blah-web
+    tag: 1.0.0
+    pullPolicy: Always
+
+services:
+  blah-ws:
+    replicas: 1
+    ci:
+      dockerfilelocation: images/blah-ws
+      containerrepository: blah-ws
+      tag: 1.0.0
+    image:
+      repository: 535282574996.dkr.ecr.eu-west-1.amazonaws.com/blah-ws
+      tag: 1.0.0
+      pullPolicy: Always
+    env:
+      {}
+
+resources:
+  requests:
+    cpu: 500m
+    memory: "768Mi"
+  limits:
+    cpu: 1000m
+    memory: "1024Mi"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

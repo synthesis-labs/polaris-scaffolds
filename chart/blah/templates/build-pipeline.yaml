@@ -1,0 +1,24 @@
+apiVersion: polaris.synthesis.co.za/v1alpha1
+kind: PolarisBuildPipeline
+metadata:
+  name: {{ template "todo.fullname" . }}-buildpipeline
+  labels:
+    app: {{ template "todo.name" . }}
+    chart: {{ template "todo.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  source:
+    codecommitrepo: {{ .Values.buildpipeline.codecommitrepo }}
+    branch: {{ .Values.buildpipeline.branch }}
+  builds:
+  - name: blah-web
+    dockerfilelocation: {{ .Values.web.ci.dockerfilelocation }}
+    containerrepository: {{ .Values.web.ci.containerrepository }}
+    tag: {{ .Values.web.ci.tag }}
+{{- range $service_name, $service_detail := $.Values.services }}
+  - name: {{ $service_name }}
+    dockerfilelocation: {{ $service_detail.ci.dockerfilelocation }}
+    containerrepository: {{ $service_detail.ci.containerrepository }}
+    tag: {{ $service_detail.ci.tag }}
+{{- end}}

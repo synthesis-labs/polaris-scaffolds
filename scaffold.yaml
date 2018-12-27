@@ -1,0 +1,14 @@
+description: A helloworld application written in Kotlin.
+
+help: |
+  Includes 2 images:
+  - helloworld-web is a static react web client
+  - helloworld-ws is a webservice responding to /hello requests
+
+parameters:
+- name: aws_account
+  default: 1234567890123456
+- name: aws_region
+  default: eu-west-1
+- name: cluster_name
+  default: example.com
