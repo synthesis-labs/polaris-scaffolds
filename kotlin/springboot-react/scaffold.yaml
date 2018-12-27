@@ -6,7 +6,9 @@ help: |
   - helloworld-ws is a webservice responding to /hello requests
 
 parameters:
-- name: aws-account
-  type: string
-- name: aws-region
-  type: string
+- name: aws_account
+  default: 1234567890123456
+- name: aws_region
+  default: eu-west-1
+- name: cluster_name
+  default: example.com
