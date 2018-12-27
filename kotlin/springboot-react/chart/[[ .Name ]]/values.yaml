@@ -1,34 +1,29 @@
 
-{{- $aws_account  := [[ .Parameters.aws_account ]] }}
-{{- $aws_region   := [[ .Parameters.aws_region ]] }}
-{{- $cluster_name := [[ .Parameters.cluster_name ]] }}
-{{- $application_name := [[ .Name ]] }}
-
 buildpipeline:
-  codecommitrepo: {{ $application_name }}
+  codecommitrepo: [[ .Name ]]
   branch: master
 
 web:
   replicas: 1
-  host: {{ $application_name }}.{{ $cluster_name }}
+  host: [[ .Name ]].[[ .Parameters.cluster_name ]]
   ci:
-    dockerfilelocation: images/{{ $application_name }}-web
-    containerrepository: {{ $application_name }}-web
+    dockerfilelocation: images/[[ .Name ]]-web
+    containerrepository: [[ .Name ]]-web
     tag: 1.0.0
   image:
-    repository: {{ $aws_account }}.dkr.ecr.{{ $aws_region }}.amazonaws.com/{{ $application_name }}-web
+    repository: [[ .Parameters.aws_account ]].dkr.ecr.[[ .Parameters.aws_region ]].amazonaws.com/[[ .Name ]]-web
     tag: 1.0.0
     pullPolicy: Always
 
 services:
-  {{ $application_name }}-ws:
+  [[ .Name ]]-ws:
     replicas: 1
     ci:
-      dockerfilelocation: images/{{ $application_name }}-ws
-      containerrepository: {{ $application_name }}-ws
+      dockerfilelocation: images/[[ .Name ]]-ws
+      containerrepository: [[ .Name ]]-ws
       tag: 1.0.0
     image:
-      repository: {{ $aws_account }}.dkr.ecr.{{ $aws_region }}.amazonaws.com/{{ $application_name }}-ws
+      repository: [[ .Parameters.aws_account ]].dkr.ecr.[[ .Parameters.aws_region ]].amazonaws.com/[[ .Name ]]-ws
       tag: 1.0.0
       pullPolicy: Always
     env:
