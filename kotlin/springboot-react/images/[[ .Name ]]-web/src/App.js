@@ -4,7 +4,7 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    message: ""
+    message: {}
   }
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>[[ .Name ]] Hello world! ({ this.state.message })</h1>
+          <h1>[[ .Name ]] { this.state.message.content } ({ this.state.message.id })</h1>
         </header>
         <div className="App-body">
 
