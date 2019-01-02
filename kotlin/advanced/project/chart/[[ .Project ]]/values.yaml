@@ -1,0 +1,7 @@
+
+global:
+  aws_account: [[ .Parameters.aws_account ]]
+  aws_region: [[ .Parameters.aws_region ]]
+  cluster_name: [[ .Parameters.cluster_name ]]
+  application_url: [[ .Project ]].[[ .Parameters.cluster_name ]]
+  global_environment: []

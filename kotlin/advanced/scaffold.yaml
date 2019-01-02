@@ -1,0 +1,32 @@
+description: A componentized microservices scaffold in Kotlin.
+
+help: |
+  This template includes a number of components which can be materialized into your project.
+
+parameters:
+- name: aws_account
+  default: 1234567890123456
+- name: aws_region
+  default: eu-west-1
+- name: cluster_name
+  default: example.com
+
+components:
+- name: microservice
+  description: a simple springboot type restful webservice
+  help: more help text here
+  parameters:
+  - name: resource_name
+    default: some_resource
+  
+- name: streamprocessor
+  description: a kafka kstream processor
+  help: more help text here
+  parameters:
+  - name: source_topic
+    default: source_topic
+  
+- name: commandupdatewebsocket
+  description: a command/update websocket attached to kstreams
+  help: more help text here
+  parameters: []
