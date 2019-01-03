@@ -1,0 +1,16 @@
+apiVersion: polaris.synthesis.co.za/v1alpha1
+kind: PolarisBuildStep
+metadata:
+  name: [[ .Component ]]
+  labels:
+    app: {{ template "thischart.name" $ }}
+    chart: {{ template "thischart.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}  
+spec:
+  pipeline: [[ .Project ]]
+  builds:
+  - name: [[ .Component ]]
+    dockerfilelocation: images/[[ .Component ]]
+    containerregistry: [[ .Project ]]-[[ .Component ]]
+    tag: 1.0.0
