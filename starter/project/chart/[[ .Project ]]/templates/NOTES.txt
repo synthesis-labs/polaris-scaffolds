@@ -1,0 +1,18 @@
+ __          __  .__  .__             /\             .___                                     .___
+|  | _______/  |_|  | |__| ____      / / _____     __| _/__  _______    ____   ____  ____   __| _/
+|  |/ /  _ \   __\  | |  |/    \    / /  \__  \   / __ |\  \/ /\__  \  /    \_/ ___\/ __ \ / __ | 
+|    <  <_> )  | |  |_|  |   |  \  / /    / __ \_/ /_/ | \   /  / __ \|   |  \  \__\  ___// /_/ | 
+|__|_ \____/|__| |____/__|___|  / / /    (____  /\____ |  \_/  (____  /___|  /\___  >___  >____ | 
+     \/                       \/  \/          \/      \/            \/     \/     \/    \/     \/ 
+
+To initialise your repository:
+------------------------------
+git init
+git remote add cluster https://git-codecommit.[[ .Parameters.aws_region ]].amazonaws.com/v1/repos/[[ .Project ]]
+git add -A
+git commit -m 'first commit'
+
+To deploy to the cluster:
+-------------------------
+git push cluster master
+helm install --name[[ .Project ]] chart/[[ .Project ]]

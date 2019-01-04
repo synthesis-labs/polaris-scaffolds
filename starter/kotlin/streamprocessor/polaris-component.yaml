@@ -1,0 +1,6 @@
+description: A streamprocessor implemented in Kotlin.
+
+help: |
+  Includes deployment, service, ingress plus buildsteps for compiling.
+
+parameters: []

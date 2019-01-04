@@ -1,0 +1,13 @@
+apiVersion: polaris.synthesis.co.za/v1alpha1
+kind: PolarisBuildPipeline
+metadata:
+  name: [[ .Project ]]
+  labels:
+    app: {{ template "thischart.name" $ }}
+    chart: {{ template "thischart.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  source:
+    codecommitrepo: [[ .Project ]]
+    branch: master
