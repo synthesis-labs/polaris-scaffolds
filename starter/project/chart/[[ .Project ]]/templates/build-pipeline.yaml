@@ -3,6 +3,7 @@ kind: PolarisBuildPipeline
 metadata:
   name: [[ .Project ]]
   labels:
+    polaris-project: [[ .Project ]]
     app: {{ template "thischart.name" $ }}
     chart: {{ template "thischart.chart" $ }}
     release: {{ $.Release.Name }}

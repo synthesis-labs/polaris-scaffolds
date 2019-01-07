@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: {{ template "thischart.fullname" . }}
   labels:
+    polaris-project: [[ .Project ]]
+    polaris-component: [[ .Component ]]
     app: {{ template "thischart.name" . }}
     chart: {{ template "thischart.chart" . }}
     release: {{ .Release.Name }}
