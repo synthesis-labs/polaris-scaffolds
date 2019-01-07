@@ -15,4 +15,4 @@ git commit -m 'first commit'
 To deploy to the cluster:
 -------------------------
 git push cluster master
-helm install --name[[ .Project ]] chart/[[ .Project ]]
+helm install --name=[[ .Project ]] chart/[[ .Project ]]
