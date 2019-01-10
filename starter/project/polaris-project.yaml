@@ -4,9 +4,5 @@ help: |
   Sets up a basic chart which includes a build pipeline and source repository.
 
 parameters:
-- name: aws_account
-  default: 1234567890123456
-- name: aws_region
-  default: eu-west-1
 - name: cluster_name
   default: example.com
