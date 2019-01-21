@@ -1,0 +1,28 @@
+[
+  {
+    "namespace": "[[ .Component ]].schema",
+    "name": "InputType",
+    "type": "record",
+    "fields" : [
+      {
+        "name" : "firstname",
+        "type" : "string"
+      },
+      {
+        "name" : "surname",
+        "type" : "string"
+      }
+    ]
+  },
+  {
+    "namespace": "[[ .Component ]].schema",
+    "name": "OutputType",
+    "type": "record",
+    "fields" : [
+      {
+        "name" : "fullname",
+        "type" : "string"
+      }
+    ]
+  }
+]
