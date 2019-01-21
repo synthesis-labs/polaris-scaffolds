@@ -8,7 +8,7 @@ class Application
 
 fun main(args: Array<String>) {
     while(true) {
-        println("Streamprocessor [[ .Component ]] running")
+        println("Simple kotlin component [[ .Component ]] running")
         Thread.sleep(1_000)
     }
 }

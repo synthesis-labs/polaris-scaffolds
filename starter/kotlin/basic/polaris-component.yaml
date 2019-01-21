@@ -1,4 +1,4 @@
-description: A simple implementation of a stream processing using PolarisKafka.
+description: Just a basic blank kotlin application.
 
 help: |
   Includes deployment, service, ingress plus buildsteps for compiling.
