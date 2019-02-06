@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "thischart.fullname" . }}
+  labels:
+    polaris-project: [[ .Project ]]
+    polaris-component: [[ .Component ]]
+    app: {{ template "thischart.name" . }}
+    chart: {{ template "thischart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    # Good for keeping websockets connected for longer
+    #
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+   rules:
+    - host: {{ .Values.global.application_url }}
+      http:
+         paths:
+          - path: /{{ .Values.resource_name }}
+            backend:
+               serviceName: {{ template "thischart.fullname" . }}
+               servicePort: 80
+          - path: /{{ .Values.resource_name }}s
+            backend:
+               serviceName: {{ template "thischart.fullname" . }}
+               servicePort: 80
+   tls:
+    - hosts:
+      - {{ .Values.global.application_url }}
