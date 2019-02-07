@@ -3,19 +3,18 @@ resource_name: [[ .Component ]]
 
 replicas: 3
 
-deployment:
-  auto: true
-  match_semver: ">=0.0.0"
-
 image:
   repository: polaris://[[ .Project ]]-[[ .Component ]]
   tag: 1.0.0
   pullPolicy: Always
 
+environment:
+  kafka_bootstrap_servers: polaris-kafka-cp-kafka.default:9092
+
 resources:
   requests:
-    cpu: 100m
+    cpu: 250m
     memory: "256Mi"
   limits:
-    cpu: 200m
+    cpu: 500m
     memory: "512Mi"
