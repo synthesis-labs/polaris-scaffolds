@@ -7,7 +7,7 @@ FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY ["[[ .Component ]]/[[ .Component ]].csproj", "[[ .Component ]]/"]
 RUN dotnet restore "[[ .Component ]]/[[ .Component ]].csproj"
-COPY . .ls
+COPY . ./
 WORKDIR "/src/[[ .Component ]]"
 RUN dotnet build "[[ .Component ]].csproj" -c Release -o /app
 
