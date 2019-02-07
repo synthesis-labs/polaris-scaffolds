@@ -22,6 +22,9 @@ spec:
         polaris-component: [[ .Component ]]
         app: {{ template "thischart.name" $ }}
         release: {{ $.Release.Name }}
+      annotations:
+        polaris.auto.deploy: "{{ .Values.deployment.auto }}"
+        polaris.auto.deploy.match.semver: "{{ .Values.deployment.match_semver }}"
     spec:
       containers:
         - name: [[ .Component ]]
