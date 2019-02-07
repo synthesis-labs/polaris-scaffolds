@@ -1,0 +1,6 @@
+description: A simple container that creates topics.
+
+help: |
+  Includes deployment plus buildsteps for compiling.
+
+parameters: []

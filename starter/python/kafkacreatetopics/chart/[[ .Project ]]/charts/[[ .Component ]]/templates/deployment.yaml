@@ -1,0 +1,53 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "thischart.fullname" $ }}
+  labels:
+    polaris-project: [[ .Project ]]
+    polaris-component: [[ .Component ]]
+    app: {{ template "thischart.name" $ }}
+    chart: {{ template "thischart.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ template "thischart.name" $ }}
+      release: {{ $.Release.Name }}
+  template:
+    metadata:
+      labels:
+        polaris-project: [[ .Project ]]
+        polaris-component: [[ .Component ]]
+        app: {{ template "thischart.name" $ }}
+        release: {{ $.Release.Name }}
+    spec:
+      containers:
+        - name: [[ .Component ]]
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- range $key, $val := $.Values.global.global_environment }}
+            - name: {{ $key }}
+              value: {{ $val }}
+            {{- end }}
+            {{- range $key, $val := $.Values.environment }}
+            - name: {{ $key }}
+              value: {{ $val }}
+            {{- end }}            
+          resources:
+{{ toYaml $.Values.resources | indent 12 }}
+    {{- with $.Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with $.Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with $.Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+

@@ -1,0 +1,6 @@
+description: A simple implementation of a stream consumer using python-kafka.
+
+help: |
+  Includes deployment plus buildsteps for compiling.
+
+parameters: []
