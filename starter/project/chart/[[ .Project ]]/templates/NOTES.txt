@@ -5,14 +5,10 @@ ______   ____ |  | _____ _______|__| ______
 |   __/ \____/|____(____  /__|  |__/____  >
 |__|                    \/              \/ 
 
-To initialise your repository:
-------------------------------
+To initialise your repository and deploy to the cluster:
+--------------------------------------------------------
 git init
 git remote add cluster https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/[[ .Project ]]
 git add -A
 git commit -m 'first commit'
-
-To deploy to the cluster:
--------------------------
 git push cluster master
-helm install --name=[[ .Project ]] chart/[[ .Project ]]
