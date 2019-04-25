@@ -23,6 +23,6 @@ $ confluent consume [[ .Component ]]-female-regions --value-format avro --from-b
 This sample also has example schemas that can be used to generate test data
 
 ```sh
-$ ksql-datagen schema=.images/[[ .Component ]]/src/main/avro/hands.on.users.schema.avsc format=avro topic=users key=id iterations=100
-$ ksql-datagen schema=.images/[[ .Component ]]/src/main/avro/hands.on.pageviews.schema.avsc format=avro topic=pageviews key=userid
+$ ksql-datagen schema=/images/[[ .Component ]]/src/main/avro/example.users.schema.avsc format=avro topic=users key=id iterations=100
+$ ksql-datagen schema=/images/[[ .Component ]]/src/main/avro/example.pageviews.schema.avsc format=avro topic=pageviews key=userid
 ```
