@@ -19,3 +19,10 @@ Consume topics using confluent console consumer
 $ confluent consume [[ .Component ]]-users --value-format avro --from-beginning
 $ confluent consume [[ .Component ]]-female-regions --value-format avro --from-beginning
 ```
+
+This sample also has example schemas that can be used to generate test data
+
+```sh
+$ ksql-datagen schema=.images/[[ .Component ]]/src/main/avro/hands.on.users.schema.avsc format=avro topic=users key=id iterations=100
+$ ksql-datagen schema=.images/[[ .Component ]]/src/main/avro/hands.on.pageviews.schema.avsc format=avro topic=pageviews key=userid
+```

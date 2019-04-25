@@ -1,0 +1,94 @@
+{
+  "namespace": "[[ .Component ]]",
+  "name": "user",
+  "type": "record",
+  "fields": [
+    {
+      "name": "userid",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "iteration": { "start": 1, "step": 1 }
+        }
+      }
+    },
+    {
+      "name": "name",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [
+            "Troy Carrillo",
+            "Dexter Melton",
+            "Adyson Hutchinson",
+            "Derek Rodgers",
+            "Addison Escobar",
+            "Skylar Clarke",
+            "Violet Bautista",
+            "Kadence Mckinney",
+            "Terry Hughes",
+            "Rishi Gomez",
+            "Andre Long",
+            "Taylor Chapman",
+            "Brady Duffy",
+            "Kailey Waters",
+            "Bruno Li",
+            "Mareli Green",
+            "Dustin Charles",
+            "Jaidyn Fletcher",
+            "Janiya Sullivan",
+            "Zaid Hart",
+            "Anaya Savage",
+            "Seamus Mack",
+            "Makayla Bush",
+            "Amira Crosby",
+            "Dustin Livingston",
+            "Cindy Clayton",
+            "Ezequiel Skinner",
+            "Brenda Hatfield",
+            "Aarav Leon",
+            "Brock Ward",
+            "Damarion Solomon",
+            "Cristal Browning",
+            "Annalise Flores",
+            "Beckham Maynard",
+            "Danika Fisher",
+            "Elliana Cross",
+            "Mina Atkins",
+            "Ty Kirby",
+            "Reginald Stanton",
+            "Sage Ferrell",
+            "Bennett Dudley",
+            "Jenna Valentine",
+            "Liana Daniels",
+            "Kaylin Small",
+            "Judah Harrell",
+            "Jazlyn Fletcher",
+            "Nick Delgado",
+            "Malik Bennett",
+            "Annalise Long",
+            "Izayah Mcdaniel"
+          ]
+        }
+      }
+    },
+    {
+      "name": "gender",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": ["MALE", "FEMALE", "OTHER"]
+        }
+      }
+    },
+    {
+      "name": "age",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "[2-7][0-9]?"
+        }
+      }
+    }
+  ]
+}
