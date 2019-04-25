@@ -1,26 +1,22 @@
 [
   {
     "namespace": "[[ .Component ]].schema",
-    "name": "InputType",
+    "name": "[[ .Component ]]Key",
     "type": "record",
     "fields" : [
       {
-        "name" : "firstname",
-        "type" : "string"
-      },
-      {
-        "name" : "surname",
+        "name" : "ulid",
         "type" : "string"
       }
     ]
   },
   {
     "namespace": "[[ .Component ]].schema",
-    "name": "OutputType",
+    "name": "Region",
     "type": "record",
     "fields" : [
       {
-        "name" : "fullname",
+        "name" : "region",
         "type" : "string"
       }
     ]
