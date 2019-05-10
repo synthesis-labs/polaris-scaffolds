@@ -1,11 +1,13 @@
 # Polaris Stream Processor
 
-To open with intelliJ:
+1. Open this folder in IntelliJ and run a build. The build generates AVRO schemas for all `avsc` files
+2. Right click the directory `build/main-generated-avro-java` and mark as generated source directory
+3. To run, add an application configuration, set `Use classpath of module` and `Main class` to the main class
+4. Code up your stream processor in `Main.kt`!
 
-```sh
-$ gradle build
-$ gradle idea
-```
+---
+
+### Optional - Test data (Linux / Mac)
 
 Generate test data using a quickstart user schema from confluent platform
 
