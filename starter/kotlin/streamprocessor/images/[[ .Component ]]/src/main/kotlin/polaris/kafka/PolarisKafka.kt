@@ -8,6 +8,7 @@ import org.apache.kafka.clients.admin.NewTopic
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
+import org.apache.kafka.common.config.SaslConfigs
 import org.apache.kafka.common.errors.InvalidReplicationFactorException
 import org.apache.kafka.common.errors.TopicExistsException
 import org.apache.kafka.common.serialization.Serde
@@ -25,6 +26,10 @@ import java.util.concurrent.TimeUnit
 
 val KAFKA_BOOTSTRAP_SERVERS_ENVVAR = "kafka_bootstrap_servers"
 val KAFKA_SCHEMA_REGISTRY_URL_ENVVAR = "schema_registry_url"
+val CONFLUENT_CLOUD_KEY_ENVVAR = "confluent_cloud_key"
+val CONFLUENT_CLOUD_SECRET_ENVVAR = "confluent_cloud_secret"
+val CONFLUENT_CLOUD_SCHEMA_KEY_ENVVAR = "confluent_cloud_schema_key"
+val CONFLUENT_CLOUD_SCHEMA_SECRET_ENVVAR = "confluent_cloud_schema_secret"
 
 data class SafeTopic<K, V>(
     val topic : String,
@@ -89,6 +94,31 @@ class PolarisKafka {
             "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
 
         properties[StreamsConfig.COMMIT_INTERVAL_MS_CONFIG] = "1000"
+
+        // Confluent cloud
+        // ---------------------------------------------------------------------------
+        //
+        if (kafka_bootstrap_servers.contains("confluent.cloud")) {
+            val confluent_cloud_key = System.getenv(CONFLUENT_CLOUD_KEY_ENVVAR)
+            val confluent_cloud_secret = System.getenv(CONFLUENT_CLOUD_SECRET_ENVVAR)
+            val confluent_cloud_schema_key = System.getenv(CONFLUENT_CLOUD_SCHEMA_KEY_ENVVAR)
+            val confluent_cloud_schema_secret = System.getenv(CONFLUENT_CLOUD_SCHEMA_SECRET_ENVVAR)
+
+            properties.put(StreamsConfig.REPLICATION_FACTOR_CONFIG, 3)
+            properties.put(StreamsConfig.SECURITY_PROTOCOL_CONFIG, "SASL_SSL")
+            properties.put(SaslConfigs.SASL_MECHANISM, "PLAIN")
+            properties.put(SaslConfigs.SASL_JAAS_CONFIG, "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"$confluent_cloud_key\" password=\"$confluent_cloud_secret\";")
+
+            // Recommended performance/resilience settings
+            properties.put(StreamsConfig.producerPrefix(ProducerConfig.RETRIES_CONFIG), 2147483647)
+            properties.put("producer.confluent.batch.expiry.ms", 9223372036854775807)
+            properties.put(StreamsConfig.producerPrefix(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG), 300000)
+            properties.put(StreamsConfig.producerPrefix(ProducerConfig.MAX_BLOCK_MS_CONFIG), 9223372036854775807)
+
+            properties.put("basic.auth.credentials.source", "USER_INFO")
+            properties.put("schema.registry.basic.auth.user.info", "$confluent_cloud_schema_key:$confluent_cloud_schema_secret")
+        }
+        // ---------------------------------------------------------------------------        
 
         serdeConfig = Collections.singletonMap(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
             schema_registry_url)
