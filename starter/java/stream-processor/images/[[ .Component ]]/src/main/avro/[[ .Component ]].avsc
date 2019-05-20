@@ -1,0 +1,24 @@
+[
+  {
+    "namespace": "[[ .Component ]].schema",
+    "name": "[[ .Component ]]Key",
+    "type": "record",
+    "fields" : [
+      {
+        "name" : "ulid",
+        "type" : "string"
+      }
+    ]
+  },
+  {
+    "namespace": "[[ .Component ]].schema",
+    "name": "Region",
+    "type": "record",
+    "fields" : [
+      {
+        "name" : "region",
+        "type" : "string"
+      }
+    ]
+  }
+]

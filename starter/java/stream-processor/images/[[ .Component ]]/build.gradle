@@ -1,25 +1,42 @@
 plugins {
   id 'java'
   id 'application'
+  id "com.commercehub.gradle.plugin.avro" version "0.15.0"
 }
 
-mainClassName = 'example.ExampleProcessor'
+mainClassName = 'streams.Processor'
 
 repositories {
     mavenCentral()
     maven { url "http://packages.confluent.io/maven/" }
-}
+    maven { url 'http://maven.polaris.dev' }
 
-jar {
-    baseName = 'example-processor'
+    jcenter() // Primarily for the gradle-avro-plugin 
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    // Logging
+    //
     compile group: "org.slf4j", name: "slf4j-log4j12", version: "1.7.25"
+
+    // Kafka
+    //
     compile group: "org.apache.kafka", name: "kafka-clients", version: "2.2.0"
     compile group: "org.apache.kafka", name: "kafka-streams", version: "2.2.0"
-}
 
+    // Polaris Kafka
+    //
+    compile group: "dev.polaris", name: "polaris-kafka", version: "1.0.1"
+
+    // Avro and schema registry
+    //
+    compile group: "io.confluent", name: "kafka-streams-avro-serde", version: "5.1.2"
+    compile group: "io.confluent", name: "kafka-avro-serializer", version: "5.1.2"
+    compile group: "io.confluent", name: "kafka-schema-registry-client", version: "5.1.2"
+    compile group: "io.confluent", name: "monitoring-interceptors", version: "5.1.2"
+
+    compile group: "org.apache.avro", name: "avro", version: "1.8.2"
+}
