@@ -1,0 +1,21 @@
+
+resource_name: [[ .Component ]]
+
+replicas: 3
+
+image:
+  repository: polaris://[[ .Project ]]-[[ .Component ]]
+  tag: 1.0.0
+  pullPolicy: Always
+
+environment:
+  kafka_bootstrap_servers: polaris-kafka-cp-kafka:9092
+  schema_registry_url: http://polaris-kafka-cp-schema-registry:8081
+
+resources:
+  requests:
+    cpu: 250m
+    memory: "256Mi"
+  limits:
+    cpu: 500m
+    memory: "512Mi"
