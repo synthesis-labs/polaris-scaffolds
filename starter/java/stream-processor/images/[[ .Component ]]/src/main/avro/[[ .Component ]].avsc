@@ -12,11 +12,11 @@
   },
   {
     "namespace": "[[ .Component ]].schema",
-    "name": "Region",
+    "name": "[[ .Component ]]Key",
     "type": "record",
     "fields" : [
       {
-        "name" : "region",
+        "name" : "[[ .Component ]]",
         "type" : "string"
       }
     ]
