@@ -12,7 +12,7 @@
   },
   {
     "namespace": "[[ .Component ]].schema",
-    "name": "[[ .Component ]]Key",
+    "name": "[[ .Component ]]Value",
     "type": "record",
     "fields" : [
       {
